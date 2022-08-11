@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Game from "./components/Game";
 import HighScores from "./components/HighScores";
+import "./App.css";
 
 const App = () => {
   return (
