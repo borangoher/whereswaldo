@@ -6,8 +6,7 @@ import Game from "./components/Game";
 import HighScores from "./components/HighScores";
 import "./App.css";
 import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBMT9knk3rYEAQ2KmybbVfCI04HSjh0OEE",
@@ -20,6 +19,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 const App = () => {
   return (
@@ -27,8 +27,8 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" exact element={<Home />} />
-        <Route path="/game" element={<Game />} />
-        <Route path="/high-scores" element={<HighScores />} />
+        <Route path="/game" element={<Game database={db} />} />
+        <Route path="/high-scores" element={<HighScores database={db} />} />
       </Routes>
     </div>
   );

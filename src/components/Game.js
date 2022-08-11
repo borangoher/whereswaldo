@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./Game.css";
+import { collection, getDocs, addDoc } from "firebase/firestore";
 
-const Game = () => {
+const Game = (props) => {
   const [timer, setTimer] = useState(0);
   const [gameStarted, setGameStarted] = useState(false);
   const [boxLeft, setBoxLeft] = useState(-999);
@@ -11,18 +12,45 @@ const Game = () => {
   const [waldoFound, setWaldoFound] = useState(false);
   const [odlawFound, setOdlawFound] = useState(false);
   const [wizardFound, setWizardFound] = useState(false);
-  const [waldoLocation, setWaldoLocation] = useState({ posX: 756, posY: 567 });
-  const [odlawLocation, setOdlawLocation] = useState({ posX: 493, posY: 294 });
+  const [waldoLocation, setWaldoLocation] = useState({
+    posX: -999,
+    posY: -999,
+  });
+  const [odlawLocation, setOdlawLocation] = useState({
+    posX: -999,
+    posY: -999,
+  });
   const [wizardLocation, setWizardLocation] = useState({
-    posX: 157,
-    posY: 639,
+    posX: -999,
+    posY: -999,
   });
 
   const BOX_SIDE_LENGTH = 50;
 
-  //setWaldoLocation({ posX: 756, posY: 567 });
-  //setOdlawLocation({ posX: 493, posY: 294 });
-  //setOdlawLocation({ posX: 157, posY: 639 });
+  useEffect(() => {
+    const getData = async () => {
+      const data = await getDocs(collection(props.database, "char-locations"));
+      data.forEach((doc) => {
+        if (doc.id === "odlaw") {
+          setOdlawLocation({
+            posX: doc.data().positionX,
+            posY: doc.data().positionY,
+          });
+        } else if (doc.id === "waldo") {
+          setWaldoLocation({
+            posX: doc.data().positionX,
+            posY: doc.data().positionY,
+          });
+        } else if (doc.id === "wizard") {
+          setWizardLocation({
+            posX: doc.data().positionX,
+            posY: doc.data().positionY,
+          });
+        }
+      });
+    };
+    getData();
+  }, [props.database]);
 
   useEffect(() => {
     let interval = () => {};
@@ -134,6 +162,16 @@ const Game = () => {
     }
   };
 
+  const addToDB = async () => {
+    const scoreName = prompt("What is your name?");
+
+    const dataRef = await addDoc(collection(props.database, "high-scores"), {
+      name: scoreName,
+      score: timer,
+    });
+    console.log(dataRef);
+  };
+
   return (
     <div id="gameContent">
       <button
@@ -159,7 +197,15 @@ const Game = () => {
           <button onClick={resetGame} className="gameButtons">
             Try Again
           </button>
-          <button className="gameButtons">Post Your Score</button>
+          <button
+            onClick={() => {
+              addToDB();
+              resetGame();
+            }}
+            className="gameButtons"
+          >
+            Post Your Score
+          </button>
         </div>
       </div>
       <div

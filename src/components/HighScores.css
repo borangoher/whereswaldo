@@ -1,0 +1,19 @@
+#scoreContent {
+  position: relative;
+  top: 30vh;
+  left: 25%;
+  width: 50%;
+  height: auto;
+  border: 3px solid black;
+  box-sizing: border-box;
+  border-bottom: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  color: black;
+}
+
+.score {
+  border-bottom: 2px solid black;
+  color: inherit;
+}
