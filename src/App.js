@@ -26,7 +26,7 @@ const App = () => {
     <div className="appContainer">
       <Navbar />
       <Routes>
-        <Route path="/" exact element={<Home />} />
+        <Route path="/whereswaldo" exact element={<Home />} />
         <Route path="/game" element={<Game database={db} />} />
         <Route path="/high-scores" element={<HighScores database={db} />} />
       </Routes>

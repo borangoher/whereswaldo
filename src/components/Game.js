@@ -184,9 +184,21 @@ const Game = (props) => {
         Start Game
       </button>
       <div id="charProfiles">
-        <img src="WaldoChar.png" alt="Waldo" className="portrait" />
-        <img src="OdlawChar.png" alt="Odlaw" className="portrait" />
-        <img src="WizardChar.png" alt="Wizard" className="portrait" />
+        <img
+          src="%PUBLIC_URL%/WaldoChar.png"
+          alt="Waldo"
+          className="portrait"
+        />
+        <img
+          src="%PUBLIC_URL%/OdlawChar.png"
+          alt="Odlaw"
+          className="portrait"
+        />
+        <img
+          src="%PUBLIC_URL%/WizardChar.png"
+          alt="Wizard"
+          className="portrait"
+        />
       </div>
       <div id="counter">{formatCounter(timer)}</div>
       <div id="gameWon" className="hidden">
@@ -233,7 +245,7 @@ const Game = (props) => {
       </div>
       <img
         id="picture"
-        src="WaldoGame.jpg"
+        src="%PUBLIC_URL%/WaldoGame.jpg"
         alt="The Game"
         className="hidden"
         onClick={(e) => onClickPicture(e)}
