@@ -185,17 +185,17 @@ const Game = (props) => {
       </button>
       <div id="charProfiles">
         <img
-          src="%PUBLIC_URL%/WaldoChar.png"
+          src={process.env.PUBLIC_URL + "/WaldoChar.jpg"}
           alt="Waldo"
           className="portrait"
         />
         <img
-          src="%PUBLIC_URL%/OdlawChar.png"
+          src={process.env.PUBLIC_URL + "/OdlawChar.jpg"}
           alt="Odlaw"
           className="portrait"
         />
         <img
-          src="%PUBLIC_URL%/WizardChar.png"
+          src={process.env.PUBLIC_URL + "/WizardChar.jpg"}
           alt="Wizard"
           className="portrait"
         />
@@ -245,7 +245,7 @@ const Game = (props) => {
       </div>
       <img
         id="picture"
-        src="%PUBLIC_URL%/WaldoGame.jpg"
+        src={process.env.PUBLIC_URL + "/WaldoGame.jpg"}
         alt="The Game"
         className="hidden"
         onClick={(e) => onClickPicture(e)}
