@@ -190,12 +190,12 @@ const Game = (props) => {
           className="portrait"
         />
         <img
-          src={process.env.PUBLIC_URL + "/OdlawChar.jpg"}
+          src={process.env.PUBLIC_URL + "OdlawChar.jpg"}
           alt="Odlaw"
           className="portrait"
         />
         <img
-          src={process.env.PUBLIC_URL + "/WizardChar.jpg"}
+          src={process.env.PUBLIC_URL + "WizardChar.jpg"}
           alt="Wizard"
           className="portrait"
         />
